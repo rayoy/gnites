@@ -1,0 +1,253 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.gintes</groupId>
+	<artifactId>gnites</artifactId>
+	<version>1.0</version>
+	<packaging>war</packaging>
+
+	<name>gnites</name>
+	<description />
+
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<build>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+		<!-- -->
+		<plugins>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>${basedir}/src/main/webapp</webappDirectory>
+					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+					<warSourceExcludes>src/main/test/**</warSourceExcludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+	</build>
+
+	<!-- Add remote repositories -->
+	<repositories>
+
+		<repository>
+			<id>maven</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+
+		<repository>
+			<id>Java.Net</id>
+			<url>http://download.java.net/maven/2/</url>
+		</repository>
+
+		<repository>
+			<id>Java.Netdd</id>
+			<url>http://repo.maven.apache.org/maven2</url>
+		</repository>
+
+		<repository>
+			<id>JBoss repository</id>
+			<url>http://repository.jboss.com/maven2/</url>
+		</repository>
+	</repositories>
+
+
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.openejb</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>5.0-1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>1.2_04</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>1.2_04</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 数据库连接驱动_mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.21</version>
+		</dependency>
+
+		<!-- 数据库连接驱动_sqlserver <dependency> <groupId>com.microsoft.sqlserver</groupId> 
+			<artifactId>sqljdbc4</artifactId> <version>3.0</version> </dependency> -->
+
+
+
+		<!-- c3p0数据库连接池 -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.2-pre5</version>
+		</dependency>
+
+
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<!-- sturts2 -->
+		<dependency>
+			<groupId>com.opensymphony</groupId>
+			<artifactId>xwork-core</artifactId>
+			<version>2.1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-convention-plugin</artifactId>
+			<version>2.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>2.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-json-plugin</artifactId>
+			<version>2.1.8</version>
+		</dependency>
+		<!-- hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.5.ga</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.0.ga</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-commons-annotations</artifactId>
+			<version>3.3.0.ga</version>
+		</dependency>
+
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.11</version>
+		</dependency>
+
+		<!-- json-lib -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<!-- java.lang.NoClassDefFoundError: org/apache/commons/collections/map/MultiKeyMap 
+			net.sf.json.JsonConfig.(JsonConfig.java:56) net.sf.json.JSONSerializer.toJSON(JSONSerializer.java:82) -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<!-- jxls -->
+		<dependency>
+			<groupId>net.sf.jxls</groupId>
+			<artifactId>jxls-core</artifactId>
+			<version>0.9.5</version>
+		</dependency>
+
+
+		<!-- jxls -->
+		<dependency>
+			<groupId>org.tuckey</groupId>
+			<artifactId>urlrewrite</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>1.6.0</version>
+			<scope>system</scope>
+			<systemPath>D:/Program Files/Java/jdk1.6.0_31/lib/tools.jar</systemPath>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 2.6//EN"
+        "http://tuckey.org/res/dtds/urlrewrite2.6.dtd">
+
+<!--
+    Configuration file for UrlRewriteFilter
+    http://tuckey.org/urlrewrite/
+-->
+      
+    <urlrewrite>       
+    
+     <!-- 
+        <rule>  
+            <note>blog</note>         
+            <from>^/(.*)$</from>  
+           
+            <to type="forward">blog/index.action?name=$1</to>    
+            
+            <to type="forward">/addArticle.jsp</to>          
+        </rule>    
+         -->
+         <rule>  
+            <note>information</note>         
+            <from>^/information/(.*).html$</from>  
+            <to type="forward">/information?news.newsType.spell=$1</to>          
+        </rule>   
+         <rule>  
+            <note>liveRoom</note>         
+            <from>^/liveRoom/(.*)$</from>  
+            <to type="forward">/live/room!findRoom.action?room.id=$1</to>          
+        </rule>       
+    </urlrewrite>  
+

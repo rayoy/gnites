@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+ 	<!-- 将对象交给spring管理 -->
+    <constant name="struts.objectFactory" value="spring" />
+	<!-- 开启使用开发模式，详细错误提示 -->
+    <constant name="struts.devMode" value="true" />
+   
+    <!-- 指定资源编码类型 -->
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定每次请求到达，重新加载资源文件 -->
+    <constant name="struts.i18n.reload" value="true" />
+    <!-- 指定每次配置文件更改后，自动重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 国际化资源文件 -->
+    <constant name="struts.custom.i18n.resources" value="src/main/resources/message/messages" />
+    <!-- 默认后缀名 -->
+    <constant name="struts.action.extension" value="do,action,jhtml,," />
+	<!-- Struts Annotation -->
+    <constant name="actionPackages" value="com.gnites.modules.*.action"/>
+    
+    <!-- 解决静态访问问题  http://struts.apache.org/release/2.2.x/docs/static-content.html  -->
+    <constant name="struts.serve.static" value="false" />  
+    
+    
+    <package name="base" extends="struts-default">
+		<interceptors>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="url">${toUrl}</result>
+			<result name="success" type="redirect">/index.jsp</result>
+		</global-results>
+	</package>
+	
+	<package name="baseAjax" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="paramsPrepareParamsStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultStack"></default-interceptor-ref>
+		<global-results>
+			<result name="success" type="json"></result>
+			<result name="json" type="json"></result>
+		</global-results>
+	</package>
+	
+	
+	<!-- Blog Actions fff-->
+	<package name="blog" extends="base">
+		<action name="*" method="execute" class="blogAction">
+			<param name="name">{1}</param>
+			<result name="myblog">/WEB-INF/pages/blog/myBlog.jsp</result>
+			<result name="success">/WEB-INF/pages/blog/index.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		<action name="myBlog" method="myBlog" class="blogAction">
+			<result name="url" type="redirect">/${toUrl}</result>
+		</action>
+	</package>	
+	
+	<!-- Article Actions fff-->
+	<package name="article" extends="base" namespace="/article">
+	
+		<!-- 新建文章  -->
+		<action name="create" method="create" class="articleAction">
+			<result name="success">/WEB-INF/pages/article/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	
+		<!-- 文章发布  -->
+		<action name="publish" method="publishArticle" class="articleAction">
+			<result name="success" type="redirectAction">/myBlog</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		
+		<!-- 文章列表  -->
+		<action name="list" method="list" class="articleAction">
+			<result name="success">/WEB-INF/pages/article/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+	
+	<package name="articleCategory" extends="base" namespace="/ac">
+	
+		<!-- 文章列表  -->
+		<action name="list" method="list" class="articleCategoryAction">
+			<result name="success">/WEB-INF/pages/article/category/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+	
+	
+	
+	
+	
+	<package name="articleAjax" extends="baseAjax" namespace="/article">
+		<action name="del" method="delete" class="articleAction" />
+	</package>
+	
+	
+	<!-- User -->
+	<package name="user" extends="base">
+		<action name="login" method="login" class="userAction">
+			<result name="success" type="redirect">${toUrl}</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+	
+	<!-- AtmInfo Actions -->
+	<package name="atm" extends="base" namespace="/atminfo">
+		<action name="search*" method="search" class="atmAction">
+			<result name="list">/WEB-INF/pages/atm/{1}_info/list.jsp</result>
+		</action>
+		<action name="index" method="execute" class="atmAction">
+			<result name="success">/WEB-INF/pages/atm/index.jsp</result>
+		</action>
+		<action name="load" method="load" class="atmAction">
+			<result name="model">/WEB-INF/pages/atm/model.jsp</result>
+		</action>
+		<action name="list" method="listInfo" class="atmAction">
+			<result name="list">/WEB-INF/pages/atm/${toUrl}_info/list.jsp</result>
+		</action>
+		<action name="modify" method="viewForUpdate" class="atmAction">
+			<result name="modify">/WEB-INF/pages/atm/${toUrl}_info/modify.jsp</result>
+		</action>
+	</package>
+	
+	<!-- AtmInfo Actions Via Ajax -->
+	<package name="atmajax" extends="baseAjax" namespace="/atminfo">
+		<action name="add" method="createInfo" class="atmAction">
+			<result name="success"></result>
+		</action>
+		<action name="update" method="update" class="atmAction">
+			<result name="success"></result>
+		</action>
+		<action name="delete" method="batchDelete" class="atmAction">
+			<result name="success"></result>
+		</action>
+		<action name="submit" method="batchSubmit" class="atmAction">
+			<result name="success"></result>
+		</action>
+	</package>
+	
+	<!-- Area Actions -->
+	<package name="area" extends="base" namespace="/area">
+		<action name="importExcel" method="importExcel" class="areaAction">
+			<result name="success">/WEB-INF/pages/area/importSuccess.jsp</result>
+		</action>
+		<action name="index" method="execute" class="areaAction">
+			<result name="success">/WEB-INF/pages/area/index.jsp</result>
+		</action>
+		<action name="list" method="list" class="areaAction">
+			<result name="success">/WEB-INF/pages/area/list.jsp</result>
+		</action>
+		<action name="modify" method="modify" class="areaAction">
+			<result name="success">/WEB-INF/pages/area/form.jsp</result>
+		</action>
+	</package>
+	
+	<!-- Area Actions Via Ajax -->
+	<package name="areaAjax" extends="baseAjax" namespace="/area">
+		<action name="getJsonInfo" method="getJsonInfo" class="areaAction" />
+		<action name="getCities" method="getCities" class="areaAction"></action>
+		<action name="save" method="save" class="areaAction"></action>
+		<action name="update" method="update" class="areaAction"></action>
+		<action name="delete" method="delete" class="areaAction"></action>
+	</package>
+   
+</struts>
