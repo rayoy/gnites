@@ -33,7 +33,7 @@ public class BaseAction extends ActionSupport implements SessionAware,
 
 	private static final long serialVersionUID = 1L;
 
-	protected Map session;
+	protected Map<String,Object> session;
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;
 	protected Logger log = Logger.getLogger(this.getClass());
@@ -43,8 +43,7 @@ public class BaseAction extends ActionSupport implements SessionAware,
 		log.setLevel(Level.INFO);
 	}
 
-	@SuppressWarnings("unchecked")
-	public void setSession(Map session) {
+	public void setSession(Map<String,Object> session) {
 		this.session = session;
 
 	}
