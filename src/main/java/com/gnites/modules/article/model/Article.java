@@ -35,7 +35,8 @@ public class Article extends BaseEntity{
 	@ManyToOne
 	private Blog blog;
 	
-	
+	@ManyToOne
+	private ArticleCategory category;
 
 	public String getId() {
 		return id;
@@ -83,6 +84,14 @@ public class Article extends BaseEntity{
 
 	public void setSummary(String summary) {
 		this.summary = summary;
+	}
+
+	public ArticleCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ArticleCategory category) {
+		this.category = category;
 	}
 	
 	

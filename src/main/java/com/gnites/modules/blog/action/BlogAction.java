@@ -22,7 +22,6 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 		Preparable {
 
 	private static final long serialVersionUID = -1306094019567714852L;
-	private static final String URL = "url";
 
 	@Resource
 	private IBlogService<Blog> blogService;
@@ -34,71 +33,33 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 	private Blog blog;
 	private String blogId;
 	private List<Blog> blogList = new ArrayList<Blog>();
-	
+
 	private List<Article> articleList = new ArrayList<Article>();
-	
+
 	private Person user;
-	
+
 	private String toUrl;
 
 	public String execute() {
 
-		
-		// check if exist
-		Blog blog = blogService.findByName(getBlog().getName());
-		Blog b  = (Blog) session.get("myBlog");
+		Blog b = blogService.findByName(getBlog().getName());
 
-		if (blog != null) {
-			log.info(getBlog().getName()+" blog exist!");
-			setArticleList(articleService.findByProperty("blog.id",blog.getId(), 0, 12));
-			setUser(blog.getPerson());
-			setBlogId(blog.getId());
-			// CHECK IS IT MY BLOG?
-			if(b!=null){
-				if(b.getId().equals(blog.getId())){
-					return "myblog";
-				}
-			}
-			
-			
+		if (b != null) {
+			log.info(getBlog().getName() + " blog exist!");
+			setBlog(b);
+			System.out.println(getBlog().getId());
+			// setBlogId(blog.getId());
 			return SUCCESS;
 		} else {
 			log.info("blog no exist..404");
 			return ERROR;
 		}
-		// Pagination pg = new Pagination(request, response);
-		//
-		// Integer count = blogService.getCountByProperty("name", getBlog()
-		// .getName());
-		// pg.setRecordCount(count);
-		//
-		// blogList = blogService.findByProperty("name", getBlog().getName(),
-		// pg.getFirstResult(), pg.getPageSize());
-		//
-		// System.out.println("I'm in progress.."+getBlogName()+getBlog().getName());
-	}
-
-	/**
-	 * Enter My Blog
-	 * 
-	 * @return
-	 */
-	public String myBlog(){
-		Blog b = (Blog) session.get("myBlog");
-		setToUrl(b.getName());
-		return URL;
 	}
 	
-	/**
-	 * 查看blog
-	 * @return
-	 */
-	public String view(){
-		setBlog(blogService.find(getBlogId()));
+	public String manage(){
 		return SUCCESS;
 	}
-	
-	
+
 	@Override
 	public void prepare() throws Exception {
 		if (getBlogId() == null || "".equals(getBlogId())) {
@@ -160,6 +121,5 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 	public void setToUrl(String toUrl) {
 		this.toUrl = toUrl;
 	}
-
 
 }

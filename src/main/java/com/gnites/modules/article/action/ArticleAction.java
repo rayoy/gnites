@@ -57,7 +57,7 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 	public String list(){
 		
 		setArticleList(articleService.findByProperty("blog.id",getBlogId(), 0, 12));
-		
+		System.out.println(getArticleList().size());
 		return SUCCESS;
 	}
 	
