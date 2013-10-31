@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- Blog Actions fff -->
+	<package name="blog" extends="base">
+		<action name="*" method="execute" class="blogAction">
+			<param name="name">{1}</param>
+			<result name="myblog">/WEB-INF/pages/blog/myBlog.jsp</result>
+			<result name="success">/WEB-INF/pages/blog/index.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		<action name="myBlog" method="myBlog" class="blogAction">
+			<result name="url" type="redirect">/${toUrl}</result>
+		</action>
+	</package>
+
+
+</struts>

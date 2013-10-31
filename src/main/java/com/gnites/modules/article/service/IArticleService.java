@@ -12,4 +12,10 @@ public interface IArticleService<T> extends IService<T>{
 	 */
 	public Boolean publishArticle(T a);
 
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	public void BatchDelectByIds(String[] ids);
+
 }

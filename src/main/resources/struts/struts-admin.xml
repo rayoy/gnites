@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <!-- User 
+    =========================================================== 
+    	Login 	登录方法
+    	Logout 	登出方法
+    	
+    -->
+	<package name="admin" extends="base" namespace="/admin">
+	    
+		<action name="login" method="login" class="userAction">
+		    <!-- 
+		    <result name="success" type="redirect">${toUrl}</result>
+		     -->
+			<result name="success" type="redirect">/admin/index.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		<action name="logout" method="logout" class="userAction">
+			<result name="success" type="redirect">/login.html</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+
+	<!-- User AJAX actions -->
+	<package name="adminAJAX" extends="baseAjax">
+		<action name="changeUser" method="changeUser" class="userAction"></action>
+	</package>
+	
+	
+	<!-- Article Actions fff -->
+	<package name="admin_article" extends="admin" namespace="/admin/article">
+
+		<!-- 新建文章 -->
+		<action name="create" method="create" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+
+		<!-- 文章列表 -->
+		<action name="list" method="list" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+	
+	
+	<package name="admin_article_ajax" extends="baseAjax" namespace="/admin/article">
+		<action name="del" method="delete" class="articleAdminAction" />
+		<!-- 文章发布 -->
+		<action name="publish" method="save" class="articleAdminAction" />
+	</package>
+
+</struts>

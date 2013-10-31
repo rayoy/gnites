@@ -104,7 +104,7 @@
             'ui/shortcutmenu.js',
             'ui/breakline.js'
         ],
-        baseURL = '/Gnites/plugins/ueditor1_2_6_1-src/_src/';
+        baseURL = '/gnites/plugins/ueditor1_2_6_1-src/_src/';
     for (var i=0,pi;pi = paths[i++];) {
         document.write('<script type="text/javascript" src="'+ baseURL + pi +'"></script>');
     }

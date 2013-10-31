@@ -1,0 +1,15 @@
+2013-12-03 16:56:13,598 - ResourceManager : unable to find resource 'test/example.vm' in any resource loader.
+2013-12-03 16:57:00,034 - ResourceManager : unable to find resource 'src/main/test/test/example.vm' in any resource loader.
+2013-12-03 16:57:17,501 - ResourceManager : unable to find resource '/src/main/test/example.vm' in any resource loader.
+2013-12-03 16:57:29,575 - ResourceManager : unable to find resource '/src/main/test/test/example.vm' in any resource loader.
+2013-12-03 16:57:38,488 - ResourceManager : unable to find resource '/test/example.vm' in any resource loader.
+2013-12-03 16:59:24,459 - ResourceManager : unable to find resource 'D://example.vm' in any resource loader.
+2013-12-03 16:59:37,725 - ResourceManager : unable to find resource 'D:\example.vm' in any resource loader.
+2013-12-03 16:59:58,914 - ResourceManager : unable to find resource 'file:///D:/example.vm' in any resource loader.
+2013-12-03 17:00:09,321 - ResourceManager : unable to find resource 'file://D:/example.vm' in any resource loader.
+2013-12-03 17:01:11,662 - ResourceManager : unable to find resource 'd:/example.vm' in any resource loader.
+2013-12-03 17:03:07,824 - ResourceManager : unable to find resource 'D:\example.vm' in any resource loader.
+2013-12-06 14:14:34,659 - ResourceManager : unable to find resource 'D:\example.vm' in any resource loader.
+2013-12-06 14:29:26,479 - ResourceManager : unable to find resource 'example.vm' in any resource loader.
+2013-12-06 14:41:17,897 - ResourceManager : unable to find resource 'example.vm' in any resource loader.
+2013-12-06 14:42:19,159 - ResourceManager : unable to find resource 'example.vm' in any resource loader.

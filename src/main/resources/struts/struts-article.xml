@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+	<!-- Article Actions fff -->
+	<package name="article" extends="base" namespace="/article">
+
+		<!-- 新建文章 -->
+		<action name="create" method="create" class="articleAction">
+			<result name="success">/WEB-INF/pages/article/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+
+		<!-- 文章列表 -->
+		<action name="list" method="list" class="articleAction">
+			<result name="success">/WEB-INF/pages/article/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+	
+	
+
+	<package name="articleCategory" extends="admin" namespace="/article/category">
+
+		<!-- 文章列表 -->
+		<action name="list" method="list" class="articleCategoryAction">
+			<result name="success">/WEB-INF/pages/admin/article/category/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
+
+	<package name="articleAjax" extends="baseAjax" namespace="/article">
+		<action name="del" method="delete" class="articleAction" />
+		<!-- 文章发布 -->
+		<action name="publish" method="publishArticle" class="articleAction" />
+	</package>
+
+
+
+
+</struts>

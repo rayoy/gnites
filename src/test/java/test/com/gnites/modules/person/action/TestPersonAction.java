@@ -22,6 +22,16 @@ public class TestPersonAction extends TestBaseTemplate {
 		p.setNicName("sylvan41");
 		p.setEmail("ddddd@gmail.com");
 		personService.save(p);
+		
+		p = new Person();
+		p.setNicName("主编");
+		p.setEmail("ddddd@gmail.com");
+		personService.save(p);
+		
+		p = new Person();
+		p.setNicName("系统管理员");
+		p.setEmail("ddddd@gmail.com");
+		personService.save(p);
 	}
 	
 	public void testListArticle(){

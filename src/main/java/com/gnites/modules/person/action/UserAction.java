@@ -41,23 +41,39 @@ public class UserAction extends BaseAction implements ModelDriven<Person>,
 
 	private String toUrl;
 
-	@SuppressWarnings("unchecked")
+	/**
+	 * 登录
+	 * @return
+	 */
 	public String login() {
 
 		Person p = personService.loginUser(getUser());
 
 		if (p != null) {
 			log.info("Login Success !");
-			session.put("user", p);
+			session.put("s_user", p);
 			Blog b = blogService.findByUser(p.getId());
-			session.put("myBlog", b);
+			session.put("s_blog", b);
 			setToUrl(b.getName());
 		} else {
 			log.info("Login failure !");
 		}
 		return SUCCESS;
 	}
-
+	
+	public String admin(){
+		return SUCCESS;
+	}
+	
+	/**
+	 * 登出
+	 * @return
+	 */
+	public String logout(){
+		session.remove("user");
+		return SUCCESS;
+	}
+	
 	@Override
 	public void prepare() throws Exception {
 		if (getUserId() != null && "".equals(getUserId())) {

@@ -12,6 +12,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-version>3.1.0.RELEASE</spring-version>
+		<!-- 
+			<activiti.version>5.13</activiti.version>
+        <activiti.engine.version>5.13</activiti.engine.version>
+		 -->
+	
 	</properties>
 
 
@@ -53,7 +58,7 @@
 		</plugins>
 	</build>
 
-	<!-- Add remote repositories -->
+	<!-- Add remote repositories-->
 	<repositories>
 
 		<repository>
@@ -71,13 +76,16 @@
 			<url>http://repo.maven.apache.org/maven2</url>
 		</repository>
 
+		<!-- 
 		<repository>
 			<id>JBoss repository</id>
 			<url>http://repository.jboss.com/maven2/</url>
 		</repository>
+		 -->
+		
 	</repositories>
 
-
+ 
 
 
 
@@ -248,6 +256,50 @@
 			<scope>system</scope>
 			<systemPath>D:/Program Files/Java/jdk1.6.0_31/lib/tools.jar</systemPath>
 		</dependency>
+		
+		<!-- activiti 
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>5.13</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>5.13</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-explorer</artifactId>
+            <version>5.13</version>
+            <exclusions>
+				<exclusion>
+					<artifactId>vaadin</artifactId>
+					<groupId>com.vaadin</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>dcharts-widget</artifactId>
+					<groupId>org.vaadin.addons</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>activiti-simple-workflow</artifactId>
+					<groupId>org.activiti</groupId>
+				</exclusion>
+			</exclusions>
+             
+			
+		</dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-modeler</artifactId>
+            <version>5.13</version>
+		</dependency>
+		
+		-->
+		
 
 	</dependencies>
 </project>

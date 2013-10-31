@@ -5,12 +5,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.gnites.modules.article.model.Article;
 import com.gnites.modules.article.service.IArticleService;
 import com.gnites.modules.blog.model.Blog;
+import com.gnites.modules.person.model.Person;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.sylvan41.action.BaseAction;
@@ -25,16 +29,26 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 	@Resource
 	private IArticleService<Article> articleService;
 
+	@Resource
+	private RuntimeService runtimeService;
+
+	@Resource
+	private RepositoryService repositoryService;
+	
+	@Resource
+	private IdentityService identityService;
+
 	private Article article;
 	private String articleId;
 	private List<Article> articleList = new ArrayList<Article>();
-	
+
 	private String blogId;
+	private Boolean isAdmin;
 	
-	public String create(){
-		
-		
-		
+	
+
+	public String create() {
+
 		return SUCCESS;
 	}
 
@@ -43,24 +57,27 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 		return SUCCESS;
 	}
 
-	
-	
-	
-	public String delete(){
-		
+	public String delete() {
+
 		articleService.DeleteById(getArticleId());
-		
+
 		return SUCCESS;
-		
+
 	}
-	
-	public String list(){
+
+	public String list() {
+
+		if(isAdmin){
+			setBlogId(((Blog)session.get("s_blog")).getId());
+		}
 		
-		setArticleList(articleService.findByProperty("blog.id",getBlogId(), 0, 12));
+		
+		setArticleList(articleService.findByProperty("blog.id", getBlogId(), 0,
+				12));
 		System.out.println(getArticleList().size());
 		return SUCCESS;
 	}
-	
+
 	/**
 	 * Save
 	 * 
@@ -80,18 +97,36 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 
 		log.info("================== Publish Article Action=====================");
 
+		Person u = (Person) session.get("user");
 		Blog blog = (Blog) session.get("myBlog");
 		getArticle().setBlog(blog);
 		if (articleService.publishArticle(getArticle())) {
 			log.info("Publish SUCCESS...");
+
+			// 启动审核流程
+			this.startProcess(u.getId());
+
 		} else {
 			log.error("Article publish failure!!!");
 		}
 		return SUCCESS;
 	}
 
-	
-	
+	/**
+	 * 启动流程
+	 */
+	public void startProcess(String uid) {
+		// 部署流程定义
+		repositoryService.createDeployment()
+				.addClasspathResource("test.bpmn20.xml").deploy();
+		
+		 // 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中
+	    identityService.setAuthenticatedUserId(uid);
+		// 启动流程实例
+		runtimeService.startProcessInstanceByKey("articlePublish");
+		log.info("articlePublish流程启动。。。,inititorUserId:"+uid);
+	}
+
 	@Override
 	public void prepare() throws Exception {
 		if (getArticleId() == null || "".equals(getArticleId())) {
@@ -130,11 +165,9 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 		this.articleList = articleList;
 	}
 
-
 	public String getBlogId() {
 		return blogId;
 	}
-
 
 	public void setBlogId(String blogId) {
 		this.blogId = blogId;

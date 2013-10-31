@@ -10,12 +10,16 @@ import com.gnites.modules.article.service.IArticleService;
 import com.sylvan41.service.ServiceImpl;
 
 @Service
-//@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+// @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class ArticleService extends ServiceImpl<Article> implements
 		IArticleService<Article> {
 
-	/* (non-Javadoc)
-	 * @see com.gnites.modules.article.service.IArticleService#publishArticle(java.lang.Object)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.gnites.modules.article.service.IArticleService#publishArticle(java
+	 * .lang.Object)
 	 */
 	@Transactional
 	public Boolean publishArticle(Article a) {
@@ -28,6 +32,14 @@ public class ArticleService extends ServiceImpl<Article> implements
 			e.printStackTrace();
 		}
 		return flag;
+	}
+
+	@Override
+	public void BatchDelectByIds(String[] ids) {
+		for (String id : ids) {
+			super.DeleteById(id);
+		}
+
 	}
 
 }
