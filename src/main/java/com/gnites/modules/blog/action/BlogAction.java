@@ -11,8 +11,8 @@ import com.gnites.modules.article.model.Article;
 import com.gnites.modules.article.service.IArticleService;
 import com.gnites.modules.blog.model.Blog;
 import com.gnites.modules.blog.service.IBlogService;
-import com.gnites.modules.person.model.Person;
-import com.gnites.modules.person.service.IPersonService;
+import com.gnites.modules.user.model.User;
+import com.gnites.modules.user.service.IUserService;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.sylvan41.action.BaseAction;
@@ -28,7 +28,7 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 	@Resource
 	private IArticleService<Article> articleService;
 	@Resource
-	private IPersonService<Person> personService;
+	private IUserService<User> personService;
 
 	private Blog blog;
 	private String blogId;
@@ -36,7 +36,7 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 
 	private List<Article> articleList = new ArrayList<Article>();
 
-	private Person user;
+	private User user;
 
 	private String toUrl;
 
@@ -106,11 +106,11 @@ public class BlogAction extends BaseAction implements ModelDriven<Blog>,
 		this.articleList = articleList;
 	}
 
-	public Person getUser() {
+	public User getUser() {
 		return user;
 	}
 
-	public void setUser(Person user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

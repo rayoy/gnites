@@ -90,11 +90,11 @@
 					</tr>
 				</thead>
 				<tbody role="alert" aria-live="polite" aria-relevant="all">
-					<s:if test="articleList.size>0">
-						<s:iterator value="articleList">
+					<s:if test="articles.size>0">
+						<s:iterator value="articles">
 					<tr class="odd">
 						<td class="with-checkbox sorting_1"><input type="checkbox" value="1" name="check"></td>
-						<td>${title }</td>
+						<td><a href="article/view.do?articleId=${id}">${title }</a></td>
 						<td>${user.nicName }</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<script src="../plugins/flat-admin/html/js/plugins/ckeditor/ckeditor.js"></script>	
 <div class="span12">
 	<div class="box">
 		<div class="box-title">
@@ -33,7 +32,7 @@
 					</div>
 				</div>
 				<div class="form-actions">
-					<button class="btn btn-primary" type="button">保存</button>
+					<input type="button" class="btn btn-primary save" value="保存" />
 					<button class="btn" type="button">取消</button>
 				</div>
 
@@ -41,3 +40,17 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript" src="/gnites/plugins/flat-admin/html/js/plugins/ckeditor/ckeditor.js"></script>	
+<script type="text/javascript">
+	var myeditor = CKEDITOR.replace('content');
+	$(function(){
+	    
+	    $(".save").bind("click",function(){
+			alert(myeditor.document.getBody().getHtml(););
+			var form = $(this).closest("form");
+			$.post(form.attr("action"),form.serialize(),function(data){
+			    alert(data);
+			});
+	    });
+	});
+</script>

@@ -72,6 +72,7 @@ public class ArticleAdminAction extends AdminAction implements
 				getBlogId()));
 		articles = articleService.findByProperties(properties,
 				pg.getFirstResult(), pg.getPageSize());
+		log.info(pg.getPageCount()+"||"+getBlogId()+"||"+articles.size());
 		return SUCCESS;
 	}
 

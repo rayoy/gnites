@@ -1,7 +1,7 @@
 package com.gnites.actions.admin;
 
 import com.gnites.modules.blog.model.Blog;
-import com.gnites.modules.person.model.Person;
+import com.gnites.modules.user.model.User;
 import com.sylvan41.action.BaseAction;
 
 public class AdminAction extends BaseAction {
@@ -13,8 +13,8 @@ public class AdminAction extends BaseAction {
 	 * 
 	 * @return session中的user
 	 */
-	protected Person getS_user() {
-		return (Person) session.get("s_user");
+	protected User getS_user() {
+		return (User) session.get("s_user");
 	}
 	
 	/**

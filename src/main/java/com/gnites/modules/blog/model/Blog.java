@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.gnites.modules.person.model.Person;
+import com.gnites.modules.user.model.User;
 import com.sylvan41.model.BaseEntity;
 
 @Entity
@@ -23,7 +23,7 @@ public class Blog extends BaseEntity {
 	private String name;
 	
 	@ManyToOne
-	private Person person;
+	private User user;
 
 	public String getId() {
 		return id;
@@ -41,13 +41,14 @@ public class Blog extends BaseEntity {
 		this.name = name;
 	}
 
-	public Person getPerson() {
-		return person;
+	public User getUser() {
+		return user;
 	}
 
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 	
 
 

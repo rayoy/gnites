@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import com.gnites.modules.article.model.Article;
 import com.gnites.modules.article.service.IArticleService;
 import com.gnites.modules.blog.model.Blog;
-import com.gnites.modules.person.model.Person;
+import com.gnites.modules.user.model.User;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.sylvan41.action.BaseAction;
@@ -71,7 +71,6 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 			setBlogId(((Blog)session.get("s_blog")).getId());
 		}
 		
-		
 		setArticleList(articleService.findByProperty("blog.id", getBlogId(), 0,
 				12));
 		System.out.println(getArticleList().size());
@@ -97,8 +96,8 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 
 		log.info("================== Publish Article Action=====================");
 
-		Person u = (Person) session.get("user");
-		Blog blog = (Blog) session.get("myBlog");
+		User u = (User) session.get("s_user");
+		Blog blog = (Blog) session.get("s_blog");
 		getArticle().setBlog(blog);
 		if (articleService.publishArticle(getArticle())) {
 			log.info("Publish SUCCESS...");

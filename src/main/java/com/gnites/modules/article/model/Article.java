@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.gnites.modules.blog.model.Blog;
-import com.gnites.modules.person.model.Person;
+import com.gnites.modules.user.model.User;
 import com.sylvan41.model.BaseEntity;
 
 @Entity
@@ -40,7 +40,7 @@ public class Article extends BaseEntity{
 	private ArticleCategory category;
 	
 	@ManyToOne
-	private Person author; // 作者
+	private User author; // 作者
 
 	public String getId() {
 		return id;
@@ -98,11 +98,11 @@ public class Article extends BaseEntity{
 		this.category = category;
 	}
 
-	public Person getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Person author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 	

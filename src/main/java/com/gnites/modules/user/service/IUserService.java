@@ -1,8 +1,8 @@
-package com.gnites.modules.person.service;
+package com.gnites.modules.user.service;
 
 import com.sylvan41.service.IService;
 
-public interface IPersonService<T> extends IService<T>{
+public interface IUserService<T> extends IService<T>{
 
 	/**
 	 *  Login User
@@ -11,5 +11,7 @@ public interface IPersonService<T> extends IService<T>{
 	 * @return
 	 */
 	public T loginUser(T user);
+	
+	public T login(T user);
 
 }

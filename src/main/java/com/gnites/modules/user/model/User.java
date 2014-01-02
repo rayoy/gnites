@@ -1,4 +1,4 @@
-package com.gnites.modules.person.model;
+package com.gnites.modules.user.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ import com.sylvan41.model.BaseEntity;
  */
 
 @Entity
-public class Person extends BaseEntity{
+public class User extends BaseEntity{
 
 	private static final long serialVersionUID = -7181505687607703982L;
 	
@@ -24,6 +24,10 @@ public class Person extends BaseEntity{
 	@GeneratedValue(generator = "system-uuid")  
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
+	
+	private String name;
+	
+	private String realName;
 	
 	private String account;
 	
@@ -73,6 +77,22 @@ public class Person extends BaseEntity{
 
 	public void setNicName(String nicName) {
 		this.nicName = nicName;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 }

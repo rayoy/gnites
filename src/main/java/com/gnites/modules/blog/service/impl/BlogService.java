@@ -28,7 +28,7 @@ public class BlogService extends ServiceImpl<Blog> implements
 	@Override
 	public Blog findByUser(String userId) {
 		
-		List<Blog> blogs = super.findByProperty("person.id", userId);
+		List<Blog> blogs = super.findByProperty("user.id", userId);
 		if(blogs.size()>0){
 			return blogs.get(0);
 		}

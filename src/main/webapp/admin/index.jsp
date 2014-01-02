@@ -213,11 +213,11 @@
 			});
 			$(".subnav-menu a").bind("click", function() {
 
-				var url = $(this).attr("href")+"?t="+new Date().getTime();
+				var url = $(this).attr("href");
 				$(".active").removeClass("active");
 				$(this).parent().addClass("active");
 				$("#main .row-fluid").load(url,function(){
-					CKEDITOR.replace('content');
+					//CKEDITOR.replace('content');
 				});
 				return false;
 
