@@ -1,0 +1,3 @@
+baseurl: /gnites
+markdown: redcarpet
+auto: true
