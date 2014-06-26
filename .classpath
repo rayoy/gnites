@@ -45,5 +45,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/joda-time-2.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/velocity-tools-2.0.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

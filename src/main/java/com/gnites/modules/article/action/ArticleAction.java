@@ -43,9 +43,6 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 	private List<Article> articleList = new ArrayList<Article>();
 
 	private String blogId;
-	private Boolean isAdmin;
-	
-	
 
 	public String create() {
 
@@ -53,7 +50,7 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 	}
 
 	public String execute() {
-
+		System.out.println("...");
 		return SUCCESS;
 	}
 
@@ -67,9 +64,9 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 
 	public String list() {
 
-		if(isAdmin){
-			setBlogId(((Blog)session.get("s_blog")).getId());
-		}
+//		if(isAdmin){
+//			setBlogId(((Blog)session.get("s_blog")).getId());
+//		}
 		
 		setArticleList(articleService.findByProperty("blog.id", getBlogId(), 0,
 				12));
@@ -108,6 +105,11 @@ public class ArticleAction extends BaseAction implements ModelDriven<Article>,
 		} else {
 			log.error("Article publish failure!!!");
 		}
+		return SUCCESS;
+	}
+	
+	public String view(){
+		setArticle(articleService.find(getArticleId()));
 		return SUCCESS;
 	}
 

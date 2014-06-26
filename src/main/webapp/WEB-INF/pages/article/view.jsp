@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${name }</title>
+<title>${title }</title>
 <link href="${ctx }/plugins/flat-admin/html/css/bootstrap.min.css" rel="stylesheet">
 <link href="${ctx }/plugins/flat-admin/html/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="${ctx }/plugins/flat-admin/html/css/plugins/jquery-ui/smoothness/jquery-ui.css" rel="stylesheet">
@@ -22,11 +22,13 @@
 <link href="${ctx }/plugins/flat-admin/html/css/style.css" rel="stylesheet">
 <link href="${ctx }/plugins/flat-admin/html/css/themes.css" rel="stylesheet">
 <style type="text/css">
-.container{width: 940px;}
+.container {
+	width: 940px;
+}
 </style>
 </head>
 <body>
-	 <!--  Header -->
+	<!--  Header -->
 	<jsp:include page="/WEB-INF/pages/admin/header-min.jsp" />
 	<div id="content" class="nav-hidden container">
 		<div id="main" style="margin-left: 0px;">
@@ -44,6 +46,23 @@
 			<div class="row-fluid">
 				<!-- Left panel -->
 				<div class="span9">
+					<div class="row-fluid">
+						<div class="blog-list-post">
+							<div class="post-content">
+								<h4 class="post-title">
+									<a href="#">${title }</a>
+								</h4>
+								<div class="post-meta">
+									<span class="date"> <i class="icon-calendar"></i> ${publishTime }
+									</span> <span class="comments"> <i class="icon-comments"></i> <a href="#">5 comments</a>
+									</span> <span class="tags"> <i class="icon-tag"></i> <a href="#">ui</a> <a href="#">flat</a> <a href="#">clean</a>
+									</span> <span class="author"> <i class="icon-user"></i> <a href="#">eakroko</a>
+									</span>
+								</div>
+								<div class="post-text">${content }</div>
+							</div>
+						</div>
+					</div>
 				</div>
 
 				<!-- Right panel -->
@@ -89,15 +108,6 @@
 		<script type="text/javascript" src="statics/js/jquery-1.4.2.js"></script>
 		<script type="text/javascript">
 	    $(function(){
-			
-			var bid=$("#blogId").val();
-			var sHtml="";
-			$.getJSON("admin/article/category/select.do?blogId="+bid,function(data){
-			    for(var i=0;i<data.length;i++){
-					sHtml+="<li><a href='#'>"+data[i].name+"</a></li>";
-			    }
-			    $(".blog-widget-categories").html(sHtml);
-			});
 
 		$(".delArticle").live("click",function(){
 
@@ -112,17 +122,6 @@
 
 	    });
 
-	    function reloadArticle(){
-		var bid=$("#blogId").val();
-			$(".span9").load("article/list.do?blogId=" + bid);
-	    }
-
-	    function loadArticleCategory(){
-		var bid=$("#blogId").val();
-		$("#category").load("ac/list.do?blogId="+bid);
-	    }
-
-	    reloadArticle();
 	</script>
 </body>
 </html>

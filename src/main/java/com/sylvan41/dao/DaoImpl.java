@@ -141,7 +141,6 @@ public class DaoImpl<T extends BaseEntity> extends HibernateDaoSupport implement
 
 	@Transactional
 	public void DeleteById(Serializable id) {
-		
 		getHibernateTemplate().delete(find(id));
 		log.info("Delete success...");
 	}

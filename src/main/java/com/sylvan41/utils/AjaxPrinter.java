@@ -27,6 +27,7 @@ public class AjaxPrinter {
 		try {
 			res.setCharacterEncoding("UTF-8");
 			res.setContentType("text/plain");
+			//res.setContentType("text/html");
 			PrintWriter out = res.getWriter();
 			out.print(o);
 			out.flush();

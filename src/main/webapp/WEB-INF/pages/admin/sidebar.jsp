@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div id="left">
+<%@ page import="java.util.Date" %>
+<div id="left" class="ui-sortable ui-resizable">
 	<form action="search-results.html" method="GET" class='search-form'>
 		<div class="search-pane">
 			<input type="text" name="search" placeholder="Search here...">
@@ -42,7 +43,7 @@
 					</li>
 					 -->
 			<li><a href="article/list.do?blogId=${s_blog.id }">所有文章</a></li>
-			<li><a href="article/create.do?t=qw">写文章</a></li>
+			<li><a href="article/create.do">写文章</a></li>
 			<li><a href="article/category/list.do?blogId=${s_blog.id }">分类目录</a></li>
 			<li><a href="article/tags/list.do?blogId=${s_blog.id }">标签</a></li>
 		</ul>

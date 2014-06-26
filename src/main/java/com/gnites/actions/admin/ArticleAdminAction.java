@@ -11,83 +11,95 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.gnites.modules.article.model.Article;
+import com.gnites.modules.article.model.ArticleCategory;
+import com.gnites.modules.article.service.IArticleCategoryService;
 import com.gnites.modules.article.service.IArticleService;
+import com.gnites.modules.blog.model.Blog;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.Preparable;
 import com.sylvan41.action.CRUDMethod;
+import com.sylvan41.utils.AjaxPrinter;
 import com.sylvan41.utils.Pagination;
 
 @Controller
 @Scope(value = "prototype")
 public class ArticleAdminAction extends AdminAction implements
-		ModelDriven<Article>, Preparable,CRUDMethod {
+		ModelDriven<Article>, Preparable, CRUDMethod {
 
 	private static final long serialVersionUID = -6361429535065342585L;
 
 	@Resource
 	private IArticleService<Article> articleService;
+	@Resource
+	private IArticleCategoryService<ArticleCategory> categoryService;
+
 	private List<Article> articles = new ArrayList<Article>();
 	private String articleId;
 	private Article article;
 	private String blogId;
+	private String categoryId;
 
-	
 	@Override
 	public String create() {
 		return SUCCESS;
 	}
-	
+
 	@Override
 	public String delete() {
-		String[] ids = getArticleId().split(",");
-		articleService.BatchDelectByIds(ids);
+		String message = "success";
+		try {
+			String[] ids = getArticleId().split(",");
+			articleService.BatchDelectByIds(ids);
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = "failed";
+		}
+		AjaxPrinter.print(message, response);
 		return SUCCESS;
 	}
-
 
 	@Override
 	public String modify() {
 		return SUCCESS;
 	}
 
-
 	@Override
 	public String query() {
 		return SUCCESS;
 	}
-
 
 	@Override
 	public String update() {
 		articleService.update(getArticle());
 		return SUCCESS;
 	}
-	
+
 	public String list() {
 
+		if(getBlogId()==null||"".equals(getBlogId())){
+			setBlogId(((Blog)session.get("s_blog")).getId());
+		}
 		Map<String, Object> properties = new HashMap<String, Object>();
 		properties.put("blog.id", getBlogId());
 		Pagination pg = new Pagination(request, response);
-		pg.setPageCount(articleService.getCountByProperty("blog.id",
+		pg.setRecordCount(articleService.getCountByProperty("blog.id",
 				getBlogId()));
 		articles = articleService.findByProperties(properties,
 				pg.getFirstResult(), pg.getPageSize());
-		log.info(pg.getPageCount()+"||"+getBlogId()+"||"+articles.size());
+		request.setAttribute("pagination", pg);
+		log.info(pg.getPageCount() + "||" + getBlogId() + "||"
+				+ articles.size());
 		return SUCCESS;
 	}
 
-	
-	public String save(){
-		
+	public String save() {
+		if (getCategoryId() != null && !"".equals(getCategoryId())) {
+			getArticle().setCategory(categoryService.find(getCategoryId()));
+		}
 		articleService.save(getArticle());
 		return SUCCESS;
 	}
-	
-	
-	
-	
-	
-	
+
 	public List<Article> getArticles() {
 		return articles;
 	}
@@ -132,6 +144,14 @@ public class ArticleAdminAction extends AdminAction implements
 	@Override
 	public Article getModel() {
 		return getArticle();
+	}
+
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

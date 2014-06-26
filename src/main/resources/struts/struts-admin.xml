@@ -34,24 +34,66 @@
 	<!-- Article Actions fff -->
 	<package name="admin_article" extends="admin" namespace="/admin/article">
 
-		<!-- 新建文章 -->
 		<action name="create" method="create" class="articleAdminAction">
 			<result name="success">/WEB-INF/pages/admin/article/create.jsp</result>
 			<result name="error">/WEB-INF/pages/common/404.html</result>
 		</action>
+		
+		<action name="modify" method="modify" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		
+		<action name="search" method="query" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
 
-		<!-- 文章列表 -->
 		<action name="list" method="list" class="articleAdminAction">
 			<result name="success">/WEB-INF/pages/admin/article/list.jsp</result>
 			<result name="error">/WEB-INF/pages/common/404.html</result>
 		</action>
 	</package>
 	
+	<!-- Category -->
+	<package name="admin_article_category" extends="admin" namespace="/admin/article/category">
+
+		<action name="create" method="create" class="articleCategoryAction">
+			<result name="success">/WEB-INF/pages/admin/article/category/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	    
+		<action name="modify" method="modify" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/category/create.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		
+		<action name="search" method="query" class="articleAdminAction">
+			<result name="success">/WEB-INF/pages/admin/article/category/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+		
+		<action name="list" method="list" class="articleCategoryAction">
+			<result name="success">/WEB-INF/pages/admin/article/category/list.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
+	</package>
 	
+	
+	<!-- Article Ajax -->
 	<package name="admin_article_ajax" extends="baseAjax" namespace="/admin/article">
+	    <action name="publish" method="save" class="articleAdminAction" />
 		<action name="del" method="delete" class="articleAdminAction" />
-		<!-- 文章发布 -->
-		<action name="publish" method="save" class="articleAdminAction" />
+		<action name="update" method="delete" class="articleAdminAction" />
+	</package>
+	
+	<!-- Category Ajax -->
+	<package name="admin_article_category_ajax" extends="admin" namespace="/admin/article/category">
+
+	    <action name="save" method="save" class="articleCategoryAction" />
+	    <action name="del" method="delete" class="articleCategoryAction" />
+	    <action name="update" method="update" class="articleCategoryAction" />
+	    <action name="select" method="jsonList" class="articleCategoryAction" />
 	</package>
 
 </struts>

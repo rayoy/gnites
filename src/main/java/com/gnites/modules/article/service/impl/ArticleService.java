@@ -35,6 +35,7 @@ public class ArticleService extends ServiceImpl<Article> implements
 	}
 
 	@Override
+	@Transactional
 	public void BatchDelectByIds(String[] ids) {
 		for (String id : ids) {
 			super.DeleteById(id);

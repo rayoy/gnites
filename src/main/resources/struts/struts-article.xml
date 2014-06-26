@@ -18,6 +18,11 @@
 			<result name="success">/WEB-INF/pages/article/list.jsp</result>
 			<result name="error">/WEB-INF/pages/common/404.html</result>
 		</action>
+		
+		<action name="view" method="view" class="articleAction">
+			<result name="success">/WEB-INF/pages/article/view.jsp</result>
+			<result name="error">/WEB-INF/pages/common/404.html</result>
+		</action>
 	</package>
 	
 	
